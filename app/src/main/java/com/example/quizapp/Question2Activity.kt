@@ -64,7 +64,7 @@ class Question2Activity : AppCompatActivity() {
                     editor.commit()
                 }
 
-                val i = Intent(this, Question3Activity::class.java) // create intent of main activity to launch after animation
+                val i = Intent(this, Question3Activity::class.java) // create intent
                 startActivity(i)
                 finish()
             }

@@ -20,10 +20,10 @@ class Question1Activity : AppCompatActivity() {
 
         val sharedPreference =  getSharedPreferences("STATS", Context.MODE_PRIVATE)
         var editor = sharedPreference.edit()
-        var earned = 0
+        var earned = 0 // set all stats at 0 as it is the start of the quiz
         var wrong = 0
         var right = 0
-        editor.putInt("earned", earned)
+        editor.putInt("earned", earned) // shared prefs to track stats for end of quiz
         editor.putInt("wrong", wrong)
         editor.putInt("right", right)
         editor.commit()
@@ -31,10 +31,10 @@ class Question1Activity : AppCompatActivity() {
         val confirmBtn = findViewById<Button>(R.id.btn_confirm)
         val radioGroup = findViewById<RadioGroup>(R.id.rg_q1)
         val tv_earned = findViewById<TextView>(R.id.tv_earned)
-        tv_earned.text = "You Earned: $$earned"
+        tv_earned.text = "You Earned: $$earned" // update you earned display
 
 
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+        radioGroup.setOnCheckedChangeListener { group, checkedId -> // highlight selected answer
             for (i in 0 until group.childCount) {
                 val radioButton = group.getChildAt(i) as RadioButton
                 if (radioButton.id == checkedId) {
@@ -55,9 +55,9 @@ class Question1Activity : AppCompatActivity() {
             } else {
                 val radioButton = findViewById<RadioButton>(selectedOption)
 
-                if (radioButton.text == "Smith") {
-                    earned += 100
-                    right += 1
+                if (radioButton.text == "Smith") { // if right answer
+                    earned += 100 // track earned
+                    right += 1 // track right answers
                     editor.putInt("earned", earned)
                     editor.putInt("right", right)
                     editor.commit()
@@ -67,13 +67,13 @@ class Question1Activity : AppCompatActivity() {
                         "CORRECT! You've earned $100!",
                         Toast.LENGTH_SHORT
                     ).show()
-                } else {
+                } else { // if wrong answer
                     Toast.makeText(
                         this@Question1Activity,
                         "WRONG! The correct answer was Smith",
                         Toast.LENGTH_SHORT
                     ).show()
-                    wrong += 1
+                    wrong += 1 // track wrong answers
                     editor.putInt("wrong", wrong)
                     editor.commit()
                 }
